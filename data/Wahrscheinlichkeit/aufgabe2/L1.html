@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<p><b>Gegeben:</b> Paul gewinnt den ersten Satz mit Wahrscheinlichkeit \( P = 0{,}42 \)</p>
+
+<ul>
+  <li>Wenn Paul <b>einen Satz gewinnt</b>, gewinnt er den nächsten mit \( 0{,}7 \), sonst \( 0{,}3 \)</li>
+  <li>Wenn er <b>einen Satz verliert</b>, gewinnt er den nächsten mit \( 0{,}2 \), sonst \( 0{,}8 \)</li>
+</ul>
+
+<p>
+Pfad 1: Sieg-Sieg \( = 0{,}42 \cdot 0{,}7 = 0{,}294 \)<br>
+Pfad 2: Sieg-Niederlage-Sieg \( = 0{,}42 \cdot 0{,}3 \cdot 0{,}7 = 0{,}0882 \)<br>
+Pfad 3: Niederlage-Sieg-Sieg \( = 0{,}58 \cdot 0{,}2 \cdot 0{,}7 = 0{,}0812 \)<br><br>
+\[
+P(\text{Paul gewinnt}) = 0{,}294 + 0{,}0882 + 0{,}0812 = \boxed{0{,}4634}
+\]
+</p>
+
+
+</body>
+</html>
