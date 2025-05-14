@@ -1,35 +1,55 @@
 const container = document.getElementById("topics");
 
-Object.entries(topicData).forEach(([key, topic]) => {
+function loadHTML(path) {
+  return fetch(path).then(res => res.text());
+}
+
+async function render(topic) {
+  const topicDataEntry = topicData[topic];
+  if (!topicDataEntry) return;
+
   const topicDiv = document.createElement("div");
   topicDiv.className = "topic";
-  topicDiv.innerHTML = `<h2>${topic.title}</h2><iframe src="${topic.theory}"></iframe>`;
+  //topicDiv.innerHTML = `<h2>${topicDataEntry.title}</h2>`;
+  const theoryContent = await loadHTML(topicDataEntry.theory);
+  topicDiv.innerHTML += `<div class="theory">${theoryContent}</div>`;
 
-  topic.exercises.forEach(ex => {
+  for (const ex of topicDataEntry.exercises) {
     const exDiv = document.createElement("div");
     exDiv.className = "exercise";
     exDiv.innerHTML = `<h3>${ex.title}</h3>`;
 
-    ex.subexercises.forEach((sub, i) => {
+    for (const [i, sub] of ex.subexercises.entries()) {
       const subDiv = document.createElement("div");
       subDiv.className = "subexercise";
-      subDiv.innerHTML = `
-        <p><strong>Teilaufgabe ${i + 1}:</strong></p>
-        <iframe src="${sub.question}"></iframe>
-        <button onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">
-          Lösung anzeigen
-        </button>
-        <iframe src="${sub.solution}" style="display:none;"></iframe>
-      `;
+
+      const qHTML = await loadHTML(sub.question);
+      const sHTML = await loadHTML(sub.solution);
+
+      const lösungDiv = document.createElement("div");
+      lösungDiv.className = "lösung hidden";
+      lösungDiv.innerHTML = `<strong>Lösung:</strong> ${sHTML}`;
+
+      const button = document.createElement("button");
+      button.textContent = "Lösung anzeigen";
+      button.onclick = () => {
+        lösungDiv.classList.toggle("hidden");
+        button.textContent = lösungDiv.classList.contains("hidden") ? "Lösung anzeigen" : "Lösung ausblenden";
+        MathJax.typesetPromise();
+      };
+
+      subDiv.innerHTML = `<p><strong>Teilaufgabe ${i + 1}:</strong></p>${qHTML}`;
+      subDiv.appendChild(button);
+      subDiv.appendChild(lösungDiv);
       exDiv.appendChild(subDiv);
-    });
+    }
 
     topicDiv.appendChild(exDiv);
-  });
+  }
 
   container.appendChild(topicDiv);
-});
-
+  MathJax.typesetPromise();
+}
 
 const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
 render(currentPage);
