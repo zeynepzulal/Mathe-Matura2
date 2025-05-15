@@ -6,21 +6,17 @@ body {
   padding: 10px;
   margin: 20px;
 }
-.topic, .exercise, .subexercise {
+
+.topic,
+.exercise,
+.subexercise {
   background: #FFE1E0;
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-/*
-iframe {
-  width: 100%;
-  height: 100%;
-  border: 1px solid #ccc;
-  margin-top: 0.5rem;
-  overflow: hidden;
-} */
+
 button {
   padding: 10px;
   margin: 10px;
@@ -29,7 +25,50 @@ button {
   text-decoration: none;
   border: solid #644A07 6px;
   border-radius: 20px;
+  width: 200px;
+  height: 50px;
+
 }
+
 .hidden {
   display: none;
+}
+
+
+.homepage {
+  display: flex;
+  justify-content: space-between;
+  /* Eşit aralık için */
+  max-width: 1000px;
+  /* Genişlik isteğe göre */
+  margin: 0 auto;
+  /* Ortalamak için */
+  padding: 20px;
+}
+
+.analysis,
+.vektorgeometrie,
+.wahrscheinlichkeit {
+  text-align: center;
+  background-color: #FFE1E0;
+  width: 450px;
+  height: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 10%;
+
+}
+
+.analysis:hover,
+.vektorgeometrie:hover,
+.wahrscheinlichkeit:hover {
+  /*border: 4px solid white;*/
+  cursor: pointer;
+  box-shadow: 1px 1px 6px 8px white;
+}
+
+
+.main-title {
+  text-align: center;
 }

@@ -27,7 +27,7 @@ async function render(topic) {
       const sHTML = await loadHTML(sub.solution);
 
       const lösungDiv = document.createElement("div");
-      lösungDiv.className = "lösung hidden";
+      lösungDiv.className = "hidden";
       lösungDiv.innerHTML = `<strong>Lösung:</strong> ${sHTML}`;
 
       const button = document.createElement("button");
