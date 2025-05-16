@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-  margin: 2rem;
   background-color: #FFC6c6;
   color: #594100;
   padding: 10px;
@@ -38,12 +37,14 @@ button {
 .homepage {
   display: flex;
   justify-content: space-between;
-  /* Eşit aralık için */
   max-width: 1000px;
-  /* Genişlik isteğe göre */
   margin: 0 auto;
-  /* Ortalamak için */
   padding: 20px;
+}
+
+.homepage img{
+  width: 300px;
+  height: 200px;
 }
 
 .analysis,
@@ -71,4 +72,38 @@ button {
 
 .main-title {
   text-align: center;
+}
+
+.quote {
+  text-align: center;
+  padding: 2px;
+}
+
+.topicTitleCalc {
+  display: flex;
+  text-align: left;
+}
+
+.topicTitleCalc img {
+  width: 60px;
+  height: 60px;
+  border: 2px solid transparent;
+  margin-left: 10px;
+}
+
+.topicTitleCalc img:hover{
+  box-shadow: 1px 1px 6px 8px #FFE1E0;
+}
+
+@media (max-width: 768px) {
+  body {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .homepage {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
 }
