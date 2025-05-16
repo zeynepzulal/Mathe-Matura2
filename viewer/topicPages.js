@@ -1,7 +1,7 @@
 const container = document.getElementById("topics");
 
 function loadHTML(path) {
-  return fetch(path).then(res => res.text());
+  return fetch(path).then(res => res.text()); //a promise => inhalt der html Files wird genommen.
 }
 
 async function render(topic) {
@@ -19,7 +19,7 @@ async function render(topic) {
     exDiv.className = "exercise";
     exDiv.innerHTML = `<h3>${ex.title}</h3>`;
 
-    for (const [i, sub] of ex.subexercises.entries()) {
+    for (const [i, sub] of ex.subexercises.entries()) { //i index, sub object
       const subDiv = document.createElement("div");
       subDiv.className = "subexercise";
 
@@ -35,7 +35,6 @@ async function render(topic) {
       button.onclick = () => {
         lösungDiv.classList.toggle("hidden");
         button.textContent = lösungDiv.classList.contains("hidden") ? "Lösung anzeigen" : "Lösung ausblenden";
-        MathJax.typesetPromise();
       };
 
       subDiv.innerHTML = `<p><strong>Teilaufgabe ${i + 1}:</strong></p>${qHTML}`;
@@ -51,6 +50,6 @@ async function render(topic) {
   MathJax.typesetPromise();
 }
 
-const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
+const currentPage = window.location.pathname.split("/").pop().replace(".html", ""); //analysis, vektorgeometri oder wahrscheinlichkeit
 render(currentPage);
 
